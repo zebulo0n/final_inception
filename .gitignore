@@ -1,2 +1,2 @@
-final_inception/secrets/*
-final_inception/srcs/.env
+secrets/*
+srcs/.env
