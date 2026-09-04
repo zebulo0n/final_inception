@@ -1,0 +1,11 @@
+FROM alpine:3.20
+
+RUN apk add --no-cache lighttpd
+
+WORKDIR /var/www
+COPY html/ .
+COPY conf/lighttpd.conf /etc/lighttpd/lighttpd.conf
+
+EXPOSE 8080
+
+CMD ["lighttpd", "-D", "-f", "/etc/lighttpd/lighttpd.conf"]

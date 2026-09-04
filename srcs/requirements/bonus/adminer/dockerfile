@@ -1,0 +1,12 @@
+FROM alpine:3.20
+
+RUN apk add --no-cache php83 php83-mysqli php83-session curl \
+    && ln -sf /usr/bin/php83 /usr/bin/php \
+    && mkdir -p /var/www/adminer \
+    && curl -o /var/www/adminer/index.php -sSL https://www.adminer.org/latest.php
+
+WORKDIR /var/www/adminer
+
+EXPOSE 8081
+
+CMD ["php", "-S", "0.0.0.0:8081", "-t", "/var/www/adminer"]

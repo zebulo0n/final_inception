@@ -1,0 +1,77 @@
+services:
+  redis:
+    build:
+      context: requirements/bonus/redis
+    image: redis_inception:42
+    container_name: redis
+    networks:
+      - inception
+    restart: always
+
+  ftp:
+    build:
+      context: requirements/bonus/ftp
+    image: ftp_inception:42
+    container_name: ftp
+    env_file: .env
+    secrets:
+      - ftp_password
+    volumes:
+      - wp_data:/var/www/html
+    ports:
+      - "21:21"
+      - "21100-21110:21100-21110"
+    networks:
+      - inception
+    restart: always
+
+  static-site:
+    build:
+      context: requirements/bonus/static-site
+    image: static-site_inception:42
+    container_name: static-site
+    ports:
+      - "8080:8080"
+    networks:
+      - inception
+    restart: always
+
+  adminer:
+    build:
+      context: requirements/bonus/adminer
+    image: adminer_inception:42
+    container_name: adminer
+    ports:
+      - "8081:8081"
+    networks:
+      - inception
+    restart: always
+
+  backup:
+    build:
+      context: requirements/bonus/backup
+    image: backup_inception:42
+    container_name: backup
+    env_file: .env
+    environment:
+      MYSQL_DATABASE: ${MYSQL_DATABASE}
+      MYSQL_USER: ${MYSQL_USER}
+    secrets:
+      - db_password
+    volumes:
+      - db_backups:/backups
+    networks:
+      - inception
+    restart: always
+
+# # Note: this file is always launched together with docker-compose.yml
+# # (see `make bonus`), so the `wp_data` volume and `inception` network
+# # declared there are reused automatically by Compose's file-merging.
+volumes:
+  db_backups:
+    name: db_backups
+    driver: local
+    driver_opts:
+      type: none
+      o: bind
+      device: ${DATA_PATH}/backups
