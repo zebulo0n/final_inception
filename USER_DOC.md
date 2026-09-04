@@ -8,7 +8,7 @@
 | WordPress | The website / blog itself | via NGINX, same URL |
 | MariaDB | Stores the WordPress content | internal only, not exposed |
 | Redis (bonus) | Speeds up WordPress page loads | internal only |
-| FTP (bonus) | Upload/download WordPress files | `ftp://<login>.42.fr:21` |
+| FTP (bonus) | Upload/download WordPress files | via command line |
 | Static site (bonus) | A small standalone page | `http://<login>.42.fr:8080` |
 | Adminer (bonus) | Web UI to browse the database | `http://<login>.42.fr:8081` |
 | Backup (bonus) | Nightly database dump | no interface, runs on its own |

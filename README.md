@@ -19,7 +19,7 @@ administration, and an automated nightly MariaDB backup service.
 ## Instructions
 
 1. Add `<your-login>.42.fr` to your `/etc/hosts` pointing at your VM's IP.
-2. Replace every occurrence of `wil` (login, domain, `DATA_PATH`) in
+2. Replace every occurrence of `bobiw` (login, domain, `DATA_PATH`) in
    `srcs/.env`, `Makefile` and `srcs/docker-compose*.yml` with your own login.
 3. Fill in real passwords in `secrets/*.txt` (these files are git-ignored;
    never commit real credentials).

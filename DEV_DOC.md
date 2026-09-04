@@ -6,7 +6,7 @@ Prerequisites: a Linux VM with Docker Engine and the Compose plugin
 (`docker compose version` should work), and `make`.
 
 1. Clone the repository into the VM.
-2. Replace every occurrence of the login `wil` with your own 42 login in:
+2. Replace every occurrence of the login `bobiw` with your own 42 login in:
    - `Makefile` (`LOGIN` variable)
    - `srcs/.env` (`DOMAIN_NAME`, `LOGIN`, `DATA_PATH`, and email addresses)
 3. Point `<login>.42.fr` at the VM's IP, e.g. by adding a line to
@@ -26,7 +26,7 @@ Prerequisites: a Linux VM with Docker Engine and the Compose plugin
 - `make` — creates the host data directories, then builds and starts the
   mandatory services (`mariadb`, `wordpress`, `nginx`) via
   `srcs/docker-compose.yml`.
-- `make bonus` — same, but also builds/starts `srcs/docker-compose.bonus.yml`
+- `make bonus` — same, but also builds/starts `srcs/docker-compose_bonus.yml`
   (`redis`, `ftp`, `static-site`, `adminer`, `backup`), merged with the base
   file in the same Compose invocation so they share the `inception` network
   and the `wp_data` volume.
